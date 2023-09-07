@@ -15,7 +15,7 @@ use App\Http\Controllers\PerpustakaanController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('layouts.master');
 });
 
 Route::get('/petugas', [PerpustakaanController::class, 'petugas'])
