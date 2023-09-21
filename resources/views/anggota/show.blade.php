@@ -31,18 +31,16 @@
                             </div>
                             <!-- /.card-header -->
                             <!-- form start -->
-                            <form action="{{route('anggota.store')}}" method="POST">
-                                @csrf
                                 <div class="card-body">
                                     <div class="form-group">
                                         <label for="kode_anggota">Kode Anggota</label>
                                         <input type="text" class="form-control" name="kode_anggota" id="kode_anggota"
-                                            placeholder="Masukan kode">
+                                            placeholder="Masukan kode" value="{{ $members[0]->kode_anggota}}" disabled>
                                     </div>
                                     <div class="form-group">
                                         <label for="nama">Nama</label>
                                         <input type="text" class="form-control" name="nama_anggota" id="nama"
-                                            placeholder="Masukan nama">
+                                            placeholder="Masukan nama" value="{{ $members[0]->nama_anggota}}" disabled>
                                     </div>
                                     <div class="form-group">
                                         <label for="jk_anggota">Jenis Kelamin</label>
@@ -60,7 +58,7 @@
                                     <div class="form-group">
                                         <label>Jurusan</label>
                                         <select class="custom-select" name="jurusan_anggota">
-                                            <option selected disabled>Pilih Jurusan</option>
+                                            <option selected disabled>{{ $members[0]->jurusan_anggota}}</option>
                                             <option>RPL</option>
                                             <option>DPIB</option>
                                             <option>TP</option>
@@ -77,12 +75,12 @@
                                                 <span class="input-group-text"><i class="fas fa-phone"></i></span>
                                             </div>
                                             <input type="number" class="form-control" name="no_telpon"
-                                                data-inputmask='"mask": "(999) 999-9999"' data-mask placeholder="Masukan angka">
+                                                data-inputmask='"mask": "(999) 999-9999"' data-mask placeholder="Masukan angka" value="{{ $members[0]->no_telpon}}" disabled>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                             <label>Alamat</label>
-                                            <textarea class="form-control" name="alamat_anggota"  rows="3" placeholder="Masukan alamat"></textarea>
+                                            <textarea class="form-control" name="alamat_anggota"  rows="3" placeholder="Masukan alamat" disabled>{{ $members[0]->alamat_anggota}}</textarea>
                                         </div>
                                 </div>
                                 <div class="card-footer">

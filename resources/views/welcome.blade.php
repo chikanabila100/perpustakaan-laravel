@@ -56,7 +56,7 @@
                                 <div class="card-body">
                                     <h6 class="card-title">Lorem ipsum dolor sit amet.</h6>
                                     <p class="card-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatibus, asperiores!</p>
-                                    <a href="#" class="btn btn-primary">Click me</a>
+                                    <a href="{{ route('petugas.create') }}" class="btn btn-primary">Click me</a>
                                 </div>
                             </div>
                         </div>

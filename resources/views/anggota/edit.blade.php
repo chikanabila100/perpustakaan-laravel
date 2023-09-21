@@ -31,19 +31,26 @@
                             </div>
                             <!-- /.card-header -->
                             <!-- form start -->
-                            <form action="{{route('anggota.store')}}" method="POST">
-                                @csrf
+                            <form action="{{route('anggota.update', $members[0]->id)}}" method="POST">
+                            @csrf
+                            @method('PUT')
                                 <div class="card-body">
                                     <div class="form-group">
                                         <label for="kode_anggota">Kode Anggota</label>
-                                        <input type="text" class="form-control" name="kode_anggota" id="kode_anggota"
-                                            placeholder="Masukan kode">
+                                        <input type="text" class="form-control @error('kode_anggota') is-invalid @enderror" name="kode_anggota" id="kode_anggota"
+                                            placeholder="Masukan kode" value="{{ $members[0]->kode_anggota}}">
                                     </div>
+                                    @error('kode_anggota')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
                                     <div class="form-group">
                                         <label for="nama">Nama</label>
-                                        <input type="text" class="form-control" name="nama_anggota" id="nama"
-                                            placeholder="Masukan nama">
+                                        <input type="text" class="form-control @error('nama_anggota') is-invalid @enderror" name="nama_anggota" id="nama"
+                                            placeholder="Masukan nama" value="{{ $members[0]->nama_anggota}}">
                                     </div>
+                                    @error('nama_anggota')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
                                     <div class="form-group">
                                         <label for="jk_anggota">Jenis Kelamin</label>
                                         <div class="custom-control custom-radio">
@@ -56,10 +63,13 @@
                                                 name="jk">
                                             <label for="l" class="custom-control-label">Perempuan</label>
                                         </div>
+                                        @error('jk_anggota')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
                                     </div>
                                     <div class="form-group">
                                         <label>Jurusan</label>
-                                        <select class="custom-select" name="jurusan_anggota">
+                                        <select class="custom-select {{ $members[0]->jurusan_anggota}}" name="jurusan_anggota">
                                             <option selected disabled>Pilih Jurusan</option>
                                             <option>RPL</option>
                                             <option>DPIB</option>
@@ -70,6 +80,9 @@
                                             <option>TKJ</option>
                                         </select>
                                     </div>
+                                    @error('jurusan_anggota')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
                                     <div class="form-group">
                                         <label>No. Telepon</label>
                                         <div class="input-group">
@@ -77,18 +90,29 @@
                                                 <span class="input-group-text"><i class="fas fa-phone"></i></span>
                                             </div>
                                             <input type="number" class="form-control" name="no_telpon"
-                                                data-inputmask='"mask": "(999) 999-9999"' data-mask placeholder="Masukan angka">
+                                                data-inputmask='"mask": "(999) 999-9999"' data-mask placeholder="Masukan angka" value="{{ $members[0]->no_telpon}}">
                                         </div>
+                                        @error('no_telpon')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
                                     </div>
                                     <div class="form-group">
                                             <label>Alamat</label>
-                                            <textarea class="form-control" name="alamat_anggota"  rows="3" placeholder="Masukan alamat"></textarea>
-                                        </div>
+                                            <textarea class="form-control @error('alamat_anggota') is-invalid @enderror" name="alamat_anggota"  rows="3" placeholder="Masukan alamat">{{ $members[0]->alamat_anggota}}</textarea>
+                                    </div>
+                                    @error('alamat_anggota')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
                                 <div class="card-footer">
-                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                    <button type="submit" class="btn btn-warning">Update</button>
                                 </div>
                                 <!-- /.content -->
+    
                             </form>
-                        </div>
-                    @endsection
+                        </div>    
+                    </div>            
+            </div>
+        </div>                    
+    </div>                     
+@endsection

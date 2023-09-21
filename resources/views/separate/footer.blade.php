@@ -1,9 +1,9 @@
-<footer class="main-footer">
+  <!-- Main Footer -->
+  <footer class="main-footer">
     <!-- To the right -->
     <div class="float-right d-none d-sm-inline">
       Anything you want
     </div>
     <!-- Default to the left -->
-    <strong>Copyright &copy; 2023 <a href="https://adminlte.io">Chika Nurhasanah</a>.</strong> All rights reserved.
+    <strong>Copyright &copy; 2023 <a href="https://www.instagram.com/_chicyka/">Chik Nurhasanah</a>.</strong> All rights reserved.
   </footer>
-</div>

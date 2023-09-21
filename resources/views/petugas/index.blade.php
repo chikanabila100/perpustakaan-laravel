@@ -41,37 +41,32 @@
                     <thead>
                     <tr>
                       <th>nomor</th>
-                      <th>kode anggota</th>
-                      <th>nama anggota</th>
-                      <th>jk anggota</th>
-                      <th>jurusan anggota</th>
+                      <th>nama petugas</th>
+                      <th>jabatan petugas</th>
                       <th>no telpon</th>
-                      <th>alamat anggota</th>
+                      <th>alamat petugas</th>
                     </tr>
                     </thead>
                     <tbody>
                     </tbody>
-                        @forelse ($members as $key => $values)
-                        <form action="{{ route('anggota.destroy', $values->id)}}" method="post">
+                        @forelse ($operators as $key => $values)
+                        <form action="{{ route('petugas.destroy', $values->id)}}" method="post">
                           @csrf
                           @method('DELETE')
-                          <tr>
+                        <tr>
                             <td>{{ $key + 1}}</td>
-                            <td>{{ $values->kode_anggota}}</td>
-                            <td>{{ $values->nama_anggota}}</td>
-                            <td>{{ $values->jk_anggota}}</td>
-                            <td>{{ $values->jurusan_anggota}}</td>
+                            <td>{{ $values->nama_petugas}}</td>
+                            <td>{{ $values->jabatan}}</td>
                             <td>{{ $values->no_telpon}}</td>
-                            <td>{{ $values->alamat_anggota}}</td>
+                            <td>{{ $values->alamat_petugas}}</td>
                             <td>
-                                <a href="{{ route('anggota.show', $values->id)}}" class="btn-sm btn-info">show</a>
-                                <a href="{{ route('anggota.edit', $values->id)}}" class="btn-sm btn-warning">edit</a>
+                                <a href="{{ route('petugas.show', $values->id)}}" class="btn-sm btn-info">show</a>
+                                <a href="{{ route('petugas.edit', $values->id)}}" class="btn-sm btn-warning">edit</a>
                                 
                                 <button type="submit" class="btn-sm btn-danger">Delete</button>
                             </td>
-                          </tr>
+                        </tr>
                         </form>
-                          </tr>
                         @empty
                             <tr>
                                 <td>Data masih kosong</td>
@@ -80,9 +75,13 @@
                     <tfoot>
                     </tfoot>
                     </table>
-                  </div>
-                  <!-- /.card-body -->
                 </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </section>
+</div>
                 <!-- /.card -->
                 
 

@@ -3,20 +3,28 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
-class BukuController extends Controller
+class PerpustakaanController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
-        $members = DB::table('operators')->get();
-        return view('petugas.index', compact('operators'));
+
     }
-   
+    public function anggota()
+    {
+        return view ('perpustakaan.anggota');
+    }
+    public function buku()
+    {
+        return view ('perpustakaan.buku');
+    }
+    public function petugas()
+    {
+        return view ('perpustakaan.petugas');
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -24,7 +32,6 @@ class BukuController extends Controller
     public function create()
     {
         //
-        
     }
 
     /**
@@ -33,7 +40,6 @@ class BukuController extends Controller
     public function store(Request $request)
     {
         //
-       
     }
 
     /**

@@ -12,39 +12,28 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome Icons -->
-  <link rel="stylesheet" href="{{ asset('template/plugins/fontawesome-free/css/all.min.css')}}">
+  <link rel="stylesheet" href="{{ asset('template/plugins/fontawesome-free/css/all.min.css') }}">
   <!-- Theme style -->
-  <link rel="stylesheet" href="{{ asset('template/dist/css/adminlte.min.css')}}">
+  <link rel="stylesheet" href="{{ asset('template/dist/css/adminlte.min.css') }}">
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
 
-  <!-- Navbar -->
-  @include('separate.header')
-  <!-- /.navbar -->
+@include('separate.navbar')
+@include('separate.sidebar')
+@yield('content')
+@include('separate.footer')
 
-  <!-- Main Sidebar Container -->
-  @include('separate.sidebar')
-
-  <!-- Content Wrapper. Contains page content -->
-  @yield('content')
-  <!-- /.content-wrapper -->
-
-  <!-- Control Sidebar -->
-  
-  <!-- /.control-sidebar -->
-
-  <!-- Main Footer -->
-  @include('separate.footer')
+</div>
 <!-- ./wrapper -->
 
 <!-- REQUIRED SCRIPTS -->
 
 <!-- jQuery -->
-<script src="{{ asset('template/plugins/jquery/jquery.min.js')}}"></script>
+<script src="{{ asset('template/plugins/jquery/jquery.min.js') }}"></script>
 <!-- Bootstrap 4 -->
-<script src="{{ asset('template/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+<script src="{{ asset('template/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 <!-- AdminLTE App -->
-<script src="{{ asset('template/dist/js/adminlte.min.js')}}"></script>
+<script src="{{ asset('template/dist/js/adminlte.min.js') }}"></script>
 </body>
 </html>
