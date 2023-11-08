@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+
+use App\Models\Rak;
+use App\Models\Buku;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class BukuController extends Controller
 {
@@ -13,33 +15,54 @@ class BukuController extends Controller
     public function index()
     {
         //
-        $members = DB::table('operators')->get();
-        return view('petugas.index', compact('operators'));
+        $buku = Buku::all();
+        return view('buku.index', compact('buku'));
+
     }
-   
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Rak $rak)
     {
         //
-        
+        $raks = $rak->all();
+        return view('buku.create', compact('raks'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request, Buku $buku)
     {
         //
-       
+        $request->validate([
+            'kode_buku' => 'required',
+            'rak_id' => 'required',
+            'judul_buku' => 'required',
+            'penulis_buku' => 'required',
+            'penerbit_buku' => 'required',
+            'tahun_penerbit' => 'required',
+            'stok_buku' => 'required',
+        ]);
+
+        $buku::create([
+            'kode_buku' => $request['kode_buku'],
+            'rak_id' => $request['rak_id'],
+            'judul_buku' => $request['judul_buku'],
+            'penulis_buku' => $request['penulis_buku'],
+            'penerbit_buku' => $request['penerbit_buku'],
+            'tahun_penerbit' => $request['tahun_penerbit'],
+            'stok_buku' => $request['stok_buku'],
+        ]); 
+
+        return redirect()->route('buku.index');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Buku $buku)
     {
         //
     }
@@ -47,15 +70,15 @@ class BukuController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Buku $buku)
     {
-        //
+        
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Buku $buku)
     {
         //
     }
@@ -63,8 +86,9 @@ class BukuController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Buku $buku)
     {
-        //
+        $buku = Buku::where('id', $buku->id)->delete();
+        return redirect()->route('buku.index');
     }
 }

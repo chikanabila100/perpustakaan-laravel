@@ -4,8 +4,13 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\{
     AnggotaController,
     BukuController,
-    PetugasController
+    PetugasController,
+    RakController,
+    PeminjamanController,
+    PengembalianController,
+    AuthController
 };
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,21 +22,32 @@ use App\Http\Controllers\{
 |
 */
 
+Route::controller(AuthController::class)->group(function() {
+    Route::get('/register', 'register')->name('auth.register');
+    Route::post('/store', 'store')->name('auth.store');
+    Route::get('/', 'login')->name('auth.login');
+    Route::post('/auth', 'authentication')->name('auth.authentication');
+    Route::get('/dashboard', 'dashboard')->name('auth.dashboard');
+    Route::post('/logout', 'logout')->name('auth.logout');
+});
 
-Route::get('/', function () {
+ Route::get('/welcome', function () {
     return view('welcome');
 })->name('dashboard');
 
-// Route::get('/perpustakaan/anggota', [AnggotaController::class, 'anggota'])
-// ->name('get_anggota');
-// Route::get('/perpustakaan/buku', [BukuController::class, 'buku'])
-// ->name('get_buku');
-// Route::get('/perpustakaan/petugas', [PetugasController::class, 'petugas'])
-// ->name('get_petugas');
+Route::resource('/anggota', AnggotaController::class)->middleware('auth');
+Route::resource('/petugas', PetugasController::class)->middleware('auth');
+Route::resource('/rak', RakController::class)->middleware('auth');
+Route::resource('/buku', BukuController::class)->middleware('auth');
 
-// Route::get('/', function () {
-//     return view('layouts.master');
-// });
+Route::resource('/peminjaman', PeminjamanController::class)->middleware('auth');
+Route::resource('/pengembalian', PengembalianController::class)->middleware('auth');
 
-Route::resource('/anggota', AnggotaController::class);
-Route::resource('/petugas', PetugasController::class);
+
+
+
+// Route::get('/perpustakaan/buku', [BukuController::class, 'buku'])->name('get_buku');
+// Route::get('/perpustakaan/petugas', [PetugasController::class, 'petugas'])->name('get_petugas');
+// Route::get('/perpustakaan/rak', [RakController::class, 'rak'])->name('get_rak');
+// Route::get('/perpustakaan/peminjaman', [PeminjamanController::class, 'peminjaman'])->name('get_peminjaman');
+// Route::get('/perpustakaan/pengembalian', [PengembalianController::class, 'pengembalian'])->name('get_pengembalian');

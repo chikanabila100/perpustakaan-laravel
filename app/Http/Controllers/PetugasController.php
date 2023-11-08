@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+
 use Illuminate\Http\Request;
+use App\Models\Petugas;
 use Illuminate\Support\Facades\DB;
 
 class PetugasController extends Controller
@@ -12,12 +14,10 @@ class PetugasController extends Controller
      */
     public function index()
     {
-        //
-        $operators = DB::table('operators')->get();
+        $operators= Petugas::all();
         return view('petugas.index', compact('operators'));
     }
     
-
     /**
      * Show the form for creating a new resource.
      */
@@ -83,7 +83,7 @@ class PetugasController extends Controller
             'alamat_petugas' => 'required',
         ]);
 
-        $query = DB::table('operators')->where('id',$id)->update([
+        $query = DB::table('operators')->where('id', $id)->update([
             'nama_petugas' => $request['nama_petugas'],
             'jabatan' => $request['jabatan'],
             'no_telpon' => $request['no_telpon'],

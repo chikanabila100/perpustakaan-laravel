@@ -19,7 +19,7 @@
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Home</a></li>
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
               <li class="breadcrumb-item active">Data Tables</li>
             </ol>
           </div>
@@ -31,9 +31,9 @@
         <div class="container-fluid">
           <div class="row">
             <div class="col-12">
-              <div class="card card-primary">
+              <div class="card">
                 <div class="card-header">
-                  <h3 class="card-title">Data Petugas</h3>
+                  <h3 class="card-title">Data Perpustakaan</h3>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
@@ -41,28 +41,24 @@
                     <thead>
                     <tr>
                       <th>nomor</th>
-                      <th>nama petugas</th>
-                      <th>jabatan petugas</th>
-                      <th>no telpon</th>
-                      <th>alamat petugas</th>
+                      <th>nama rak</th>
+                      <th>lokasi</th>
                     </tr>
                     </thead>
                     <tbody>
                     </tbody>
-                        @forelse ($operators as $key => $values)
-                        <form action="{{route ('petugas.destroy', $values->id)}}" method="POST">
+                        @forelse ($raks as $key => $values)
+                        <form action="{{route ('rak.destroy', $values->id)}}" method="POST">
                           @csrf
                           @method('DELETE')
                         <tr>
                             <td>{{ $key + 1}}</td>
-                            <td>{{ $values->nama_petugas}}</td>
-                            <td>{{ $values->jabatan}}</td>
-                            <td>{{ $values->no_telpon}}</td>
-                            <td>{{ $values->alamat_petugas}}</td>
+                            <td>{{ $values->nama_rak}}</td>
+                            <td>{{ $values->lokasi_rak}}</td>
                             <td>
-                                <a href="{{route('petugas.show', $values->id)}}" class="btn-sm btn-info">show</a>
-                                <a href="{{route('petugas.edit', $values->id)}}" class="btn-sm btn-warning">edit</a>
-                                <button type="submit" class="btn-sm btn-danger">delete</button>
+                                <a href="{{ route('rak.edit', $values->id)}}" class="btn-sm btn-warning">edit</a>
+                                <button type="submit" class="btn btn-sm btn-danger">Hapus</button>
+                        </form>
                             </td>
                         </tr>
                         @empty
@@ -73,41 +69,14 @@
                     <tfoot>
                     </tfoot>
                     </table>
-                </div>
-                <!-- /.card footer -->
-                <div class="card-footer">
-                  <div class="row justify-content-between">
-                    <div class="col-3">
-                      <a class="btn btn-primary" href="{{route('petugas.create')}}" role="button"> + petugas </a>
                   </div>
-                  <div class="col-3">
-                      <div class="dataTables_paginate paging_simple_numbers" id="example2_paginate">
-                          <ul class="pagination">
-                              <li class="paginate_button page-item previous disabled" id="example2_previous"><a
-                                      href="#" aria-controls="example2" data-dt-idx="0" tabindex="0"
-                                      class="page-link">Previous</a></li>
-                              <li class="paginate_button page-item "><a href="{{route('anggota.index')}}"
-                                      aria-controls="example2" data-dt-idx="1" tabindex="0"
-                                      class="page-link">1</a></li>
-                              <li class="paginate_button page-item active"><a href="{{route('petugas.index')}}"
-                                      aria-controls="example2" data-dt-idx="1" tabindex="0"
-                                      class="page-link">2</a></li>
-                               <li class="paginate_button page-item "><a href="{{route('buku.index')}}"
-                                      aria-controls="example2" data-dt-idx="1" tabindex="0"
-                                      class="page-link">3</a></li>
-                              <li class="paginate_button page-item next disabled" id="example2_next"><a
-                                      href="#" aria-controls="example2" data-dt-idx="2" tabindex="0"
-                                      class="page-link">Next</a></li>
-                          </ul>
-                      </div>
-                  </div>
-              </div>
               </div>
             </div>
           </div>
         </div>
     </section>
-</div>
+                  <!-- /.card-body -->
+  </div>
                 <!-- /.card -->
                 
 

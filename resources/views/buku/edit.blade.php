@@ -1,82 +1,89 @@
 @extends('layouts.master')
 @section('title', 'buku')
-@section('h1', 'Edit buku')
-@section('content')
+    @section('content')
+    <div class="content-wrapper">
+      <!-- Content Header (Page header) -->
+      <div class="content-header">
+          <div class="container-fluid">
+              <div class="row mb-2">
+                  <div class="col-sm-6">
+                      <h1 class="m-0"></h1>
+                  </div><!-- /.col -->
+                  <div class="col-sm-6">
+                      <ol class="breadcrumb float-sm-right">
+                          <li class="breadcrumb-item"><a href="#">Home</a></li>
+                          <li class="breadcrumb-item active">Buku</li>
+                      </ol>
+                  </div><!-- /.col -->
+              </div><!-- /.row -->
+          </div><!-- /.container-fluid -->
+      </div>
+      <!-- /.content-header -->
     <!-- Main content -->
-    <div class="content">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="card card-warning">
-                        <div class="card-header">
-                            <h3 class="card-title">Form Buku</h3>
-                        </div>
-                        <!-- /.card-header -->
-                        <!-- form start -->
-                        <form action="{{ route('buku.update', $members[0]->id) }}" method="POST">
-                            @csrf
-                            @method('PUT')
-                            <div class="card-body">
-                                <div class="form-group">
-                                    <label for="kode_buku">Kode buku</label>
-                                    <input type="text" name="kode_buku" class="form-control" id="kode_buku"
-                                        placeholder="Masukan kode" value="{{ $members[0]->kode_buku }}">
-                                </div>
-                                <div class="form-group">
-                                    <label for="nama_buku">Nama</label>
-                                    <input type="text" name="nama_buku" class="form-control" id="nama_buku"
-                                        placeholder="Masukan nama" value="{{ $members[0]->nama_buku }}">
-                                </div>
-                                <div class="form-group">
-                                    <label for="jk_buku">Jenis Kelamin</label>
-                                    <div class="custom-control custom-radio">
-                                        <input class="custom-control-input" type="radio" id="l" value="L"
-                                            name="jk_buku" value="{{ $members[0]->jk_buku }}">
-                                        <label for="l" class="custom-control-label" >Laki-laki</label>
-                                    </div>
-                                    <div class="custom-control custom-radio">
-                                        <input class="custom-control-input" type="radio" id="p" value="P"
-                                            name="jk_buku" value="{{ $members[0]->jk_buku }}">
-                                        <label for="p" class="custom-control-label" >Perempuan</label>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label>Jurusan</label>
-                                    <select class="custom-select" name="jurusan_buku" >
-                                        <option disabled value="{{ $members[0]->jurusan_buku }}">
-                                        <option>RPL</option>
-                                        <option>DPIB</option>
-                                        <option>TP</option>
-                                        <option>TFLM</option>
-                                        <option>TEI</option>
-                                        <option>TITL</option>
-                                        <option>TKJ</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label>No. Telepon</label>
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text"><i class="fas fa-phone"></i></span>
-                                        </div>
-                                        <input type="number" name="no_telp_buku" class="form-control"
-                                            data-inputmask='"mask": "(999) 999-9999"' data-mask placeholder="Masukan angka" value="{{ $members[0]->no_telp_buku }}">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label>Alamat</label>
-                                    <textarea class="form-control" name="alamat_buku" placeholder="Masukan alamat">{{ $members[0]->alamat_buku }}</textarea>
-                                </div>
-                            </div>
-                            <div class="card-footer">
-                                <button type="update" class="btn btn-warning">Update</button>
-                                <a class="btn btn-warning" href="{{ route('buku.index') }}" role="button">Back</a>
-                            </div>
-                            <!-- /.content -->
-                        </form>
-                    </div>
-                </div>
+   <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <!-- left column -->
+        <div class="col-md-12">
+          <!-- general form elements -->
+          <div class="card card-primary">
+            <div class="card-header">
+              <h3 class="card-title">Data Buku</h3>
             </div>
-        </div>
-    </div>
-@endsection
+            <!-- /.card-header -->
+            <!-- form start -->
+            <form action="{{route('buku.update', $buku[0]->id)}}" method="POST">
+            @csrf
+            @method('PUT')
+              <div class="card-body">
+                <div class="form-group">
+                  <label for="exampleInputPassword1">Kode Buku</label>
+                  <input type="text" class="form-control @error('kode_buku') is-invalid @enderror" name="kode_buku" 
+                    id="exampleInputPassword1" placeholder="Masukan Kode" value="{{$buku[0]->kode_buku}}">
+                </div>
+                @error('kode_buku')
+                    <div class="alert alert-danger">{{$message}}</div> 
+                @enderror
+                <div class="form-group">
+                  <label for="exampleInputPassword1">Id Rak</label>
+                  <input type="text" class="form-control @error('id_rak') is-invalid @enderror" name="id_rak" 
+                    id="exampleInputPassword1" placeholder="Masukan Id Rak" value="{{$buku[0]->id_rak}}">
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputPassword1">Judul</label>
+                  <input type="text" class="form-control" name="judul_buku" id="exampleInputPassword1" placeholder="Masukan Nama">
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputPassword1">Penulis</label>
+                  <input type="text" class="form-control" name="penulis_buku" id="exampleInputPassword1" placeholder="Masukan Kode">
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputPassword1">Penerbit</label>
+                  <input type="text" class="form-control" name="penerbit_buku" id="exampleInputPassword1" placeholder="Masukan Nama">
+                </div>
+
+              <!-- Date dd/mm/yyyy -->
+               <div class="form-group">
+                  <label>Tahun Terbit</label>
+                  <div class="input-group">
+                      <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                      </div>
+                      <input type="text" class="form-control" name="tahun_penerbit" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask>
+                  </div>
+              </div>
+
+              <!-- Stok -->
+              <div class="form-group">
+                  <label>Stok</label>
+                  <input type="number" class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask>
+                  </div>
+              
+              <!-- /.card-body -->
+
+              <div class="card-footer">
+                <button type="submit" class="btn btn-primary">Next</button>
+              </div>
+            </form>
+          </div>
+    @endsection 
